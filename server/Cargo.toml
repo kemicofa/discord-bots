@@ -1,0 +1,11 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gamble = { path = "../bots/gamble" }
+common = { path = "../libs/common" }
+tokio = { version = "1", features = ["full"] }
+dotenvy = "0.15"
+tracing = "0.1"
