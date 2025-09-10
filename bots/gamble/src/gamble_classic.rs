@@ -84,8 +84,12 @@ impl GambleGame for GambleClassic {
     }
 
     fn roll(&mut self, player_id: String) -> Result<RollValue, GameError> {
-        if self.status != GameStatus::ONGOING || !self.players.contains(&player_id) {
+        if self.status != GameStatus::ONGOING {
             return Err(GameError::PlayerCannotRoll);
+        }
+
+        if !self.players.contains(&player_id) {
+            return Err(GameError::PlayerAlreadyRolled);
         }
 
         // Removing the player indicates they've now rolled.

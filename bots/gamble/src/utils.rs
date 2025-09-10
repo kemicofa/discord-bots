@@ -19,15 +19,15 @@ pub fn map_game_error_to_discord_message(player_id: &PlayerId, error: GameError)
 
     match error {
         GameError::PlayerCannotRollOnAnInexistentGame =>
-            format!("{}, you absolute dipshit, what are you rolling for? (i.e.: `g!create`)", player),
+            format!("{}, __you absolute dipshit__, what are you rolling for? (i.e.: `g!create`)", player),
         GameError::PlayerCannotRequestInfoOnInexistentGame =>
-            format!("{}, you're a lost cause, you gotta create a game first before requesting info. (i.e.: `g!create`)", player),
+            format!("{}, __you're a lost cause__, you gotta create a game first before requesting info. (i.e.: `g!create`)", player),
         GameError::NoWinnersFound =>
             ":thinking: wtf, no winners were found.. but the game is done? Holy fuck.".into(),
         GameError::PlayerCannotPlayOnInexistentGame =>
-            format!("{}, you absolute mongoloid, you gotta create a game first before playing. (i.e.: `g!create`)", player),
+            format!("{}, __you absolute mongoloid__, you gotta create a game first before playing. (i.e.: `g!create`)", player),
         GameError::PlayerCannotJoinAnInexistentGame =>
-            format!("{}, you absolute donut, you gotta create a game first before joining one. (i.e.: `g!create`)", player),
+            format!("{}, __you absolute donut__, you gotta create a game first before joining one. (i.e.: `g!create`)", player),
         GameError::CannotInitGame =>
             format!(":man_facepalming: {}, bro there is already an ongoing game. (i.e.: `g!info`)", player),
         GameError::NotEnoughPlayers(minimum_number_of_players) =>
