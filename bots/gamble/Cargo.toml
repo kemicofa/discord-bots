@@ -10,3 +10,4 @@ twilight-model = "0.16"
 twilight-cache-inmemory = "0.16"
 tracing = "0.1"
 tokio = { version = "1", features = ["time"] }
+rand = "0.9.2"
