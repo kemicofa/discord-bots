@@ -77,7 +77,7 @@ pub fn map_ggm_response_to_discord_message(
 
             Some(
                 format!(
-                    "__A winner has emerged!__\n{} owes {} **{}** gold.",
+                    "__A winner has emerged!__\n:coin: {} owes {} **{}** gold.",
                     loser,
                     winner,
                     fmt_amount(amount)
