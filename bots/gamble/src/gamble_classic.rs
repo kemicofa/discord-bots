@@ -6,6 +6,7 @@ use crate::{
     error::GameError,
     gamble_game::{ GambleGame, GameStatus },
     types::{ PlayerId, RollValue },
+    utils::fmt_amount,
 };
 
 #[derive(Debug)]
@@ -178,7 +179,7 @@ impl GambleGame for GambleClassic {
 
                 return format!(
                     ":moneybag: __Ongoing Game!__\nFor **{}** gold!\n\n{}\n\n*Next steps*\n- `g!join` to join\n- `g!play` to start the game",
-                    self.max_roll,
+                    fmt_amount(self.max_roll),
                     joined_players_message
                 );
             }
@@ -198,7 +199,7 @@ impl GambleGame for GambleClassic {
                     "<@{}> owes <@{}> {} gold!",
                     self.loser.clone().unwrap(),
                     self.winner.clone().unwrap(),
-                    self.max_roll
+                    fmt_amount(self.max_roll)
                 );
             }
         }

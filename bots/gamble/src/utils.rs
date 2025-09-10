@@ -40,7 +40,7 @@ pub fn map_game_error_to_discord_message(player_id: &PlayerId, error: GameError)
             format!(
                 ":pinched_fingers: {}, what are you broke? Gamble at least {} gold.",
                 player,
-                minimum_gold_amount
+                fmt_amount(minimum_gold_amount)
             ),
         GameError::PlayerCannotJoinOngoingGame =>
             format!(":weary: {}, let the game end first and then join the next one.", player),
@@ -76,12 +76,31 @@ pub fn map_ggm_response_to_discord_message(
             let loser = fmt_discord_name(&loser_id);
 
             Some(
-                format!("__A winner has emerged!__\n{} owes {} **{}** gold.", loser, winner, amount)
+                format!(
+                    "__A winner has emerged!__\n{} owes {} **{}** gold.",
+                    loser,
+                    winner,
+                    fmt_amount(amount)
+                )
             )
         }
         GGMResponse::PlayerRolled(roll_value) =>
-            Some(format!("{} rolled a {}!", player, roll_value)),
+            Some(format!("{} rolled a {}!", player, fmt_amount(roll_value))),
         GGMResponse::ShowGeneralInfo(info) => Some(info),
         GGMResponse::Message(message) => Some(message),
     }
+}
+
+pub fn fmt_amount(n: u64) -> String {
+    let s = n.to_string();
+    let mut result = String::new();
+    let chars: Vec<char> = s.chars().collect();
+    let len = chars.len();
+    for (i, ch) in chars.iter().enumerate() {
+        result.push(*ch);
+        if (len - i - 1) % 3 == 0 && i != len - 1 {
+            result.push(' ');
+        }
+    }
+    result
 }
